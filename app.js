@@ -9,6 +9,7 @@ const { authenticateQraphQLAPIs } = require("./middlewares/AuthMiddlware");
 const errorHanlderMiddleware = require("./middlewares/ErrorHandlerMiddleware");
 const bodyParser = require("body-parser");
 const restApiRoutesProvider = require("./RESTAPI/routes");
+const { connectToDataBase } = require("./config/dataBaseConnector");
 
 //Config ENV Variables
 dotenv.config({ path: path.join(__dirname, "/config/config.env") });
@@ -16,7 +17,7 @@ dotenv.config({ path: path.join(__dirname, "/config/config.env") });
 const app = express();
 
 //Set cors to Prevent CORS Error
-app.use(cors);
+app.use(cors());
 app.use("/api", bodyParser.json(), restApiRoutesProvider);
 //Error Hanlder Middleware
 app.use(errorHanlderMiddleware);

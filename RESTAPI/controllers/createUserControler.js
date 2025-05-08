@@ -1,6 +1,6 @@
 const express = require("express");
-const { createUserValidation } = require("../../validation/userValidation");
 const userModel = require("../../models/userModel");
+const createUserValidation = require("../../validation/userValidation");
 const handleCreateUser = async (req, res, next) => {
   try {
     const userData = await createUserValidation.validate(req.body);
