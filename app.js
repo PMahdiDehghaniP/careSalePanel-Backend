@@ -5,9 +5,7 @@ const { ApolloServer } = require("apollo-server-express");
 
 const path = require("path");
 //MiddleWares
-const { authenticateQraphQLAPIs } = require("./middlewares/AuthMiddlware");
 const errorHanlderMiddleware = require("./middlewares/ErrorHandlerMiddleware");
-const bodyParser = require("body-parser");
 const restApiRoutesProvider = require("./RESTAPI/routes");
 const { connectToDataBase } = require("./config/dataBaseConnector");
 
@@ -18,7 +16,7 @@ const app = express();
 
 //Set cors to Prevent CORS Error
 app.use(cors());
-app.use("/api", bodyParser.json(), restApiRoutesProvider);
+app.use("/api", express.json(), restApiRoutesProvider);
 //Error Hanlder Middleware
 app.use(errorHanlderMiddleware);
 
