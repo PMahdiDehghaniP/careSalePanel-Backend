@@ -22,6 +22,12 @@ const handleCreateUser = async (req, res, next) => {
       });
     }
   } catch (error) {
+    if (error.name === "ValidationError") {
+      return res.status(400).json({
+        message: error.message,
+        errors: error.errors,
+      });
+    }
     next(error);
   }
 };
